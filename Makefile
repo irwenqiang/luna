@@ -1,8 +1,9 @@
-lr:lr.o matrix.o
-	g++ -o lr lr.o matrix.o
-lr.o:LogisticRegression.cpp LogisticRegression.h
+lr:LogisticRegression.o main.o 
+	g++ -o lr LogisticRegression.o main.o
+LogisticRegression.o:LogisticRegression.cpp LogisticRegression.h matrix.h
 	g++ -c LogisticRegression.cpp 
-matrix.o:matrix.h
-	g++ -c matrix.h
+
+main.o:main.cpp LogisticRegression.h
+	g++ -c main.cpp
 clean:
-	rm matrix.o lr.o lr
+	rm -f *.o lr

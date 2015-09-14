@@ -142,6 +142,3 @@ void LogisticRegressionProblem::SaveModel(std::ostream& os) {
         os <<  i << ":" << weights[i] << " " ;
     os << endl;
 }
-
-
-
