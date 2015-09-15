@@ -22,8 +22,8 @@ int run_ilr(const char* feature, const char* target, int row, int col, const cha
 	//prob->DumpFeature(featureDump);
 	prob->LoadLabel(target);
 	//prob->DumpLabel(targetDump);
-	prob->LearningGD(0.001);
-	cout << "foo" << endl;
+	//prob->LearningGD(0.001, 0);
+	prob->LearningSGD(0.001, 0);
 	prob->SaveModel(std::cout);
 
 	double** confuse = new double*[2];
@@ -31,7 +31,7 @@ int run_ilr(const char* feature, const char* target, int row, int col, const cha
 		confuse[i] = new double[2];
 	}
 	for(int i = 0; i < row; ++i) {
-		int pred = prob->predict(prob->features[i]) > 0.5 ? 1 : 0;
+		int pred = prob->Predict(prob->features[i]) > 0.5 ? 1 : 0;
 		int label = (int)prob->labels[i];
 		confuse[label][pred]++;
 	}
